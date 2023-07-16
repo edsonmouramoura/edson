@@ -362,6 +362,18 @@ class Train():  # pylint:disable=too-few-public-methods
                              "(iteration: %s)", save_iteration, self._save_now, iteration)
                 model.save(is_exit=False)
                 self._save_now = False
+                import shutil
+
+                def copiar_pasta(origem, destino):
+                    if os.path.exists(destino):
+                        shutil.rmtree(destino)
+                    shutil.copytree(origem, destino)
+                    print("Pasta copiada com sucesso.")
+
+                # Exemplo de uso
+                origem_pasta = r"/content/edson/Model_data_new_videos"
+                destino_pasta = r"/content/drive/MyDrive/model"
+                copiar_pasta(origem_pasta, destino_pasta)
                 update_preview_images = True
 
         logger.debug("Training cycle complete")
